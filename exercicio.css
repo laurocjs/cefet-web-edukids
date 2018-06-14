@@ -1,7 +1,9 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {}
+ #controles ul {
+   transition: transform 500ms ease-in-out;
+ }
 
 /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
@@ -11,29 +13,107 @@
  *   - perturbado: animal fica pulsando
  *   - instinto-selvagem: animal dá um salto e cresce, com uma borda vermelha
  */
-.agitado {}
+.agitado {
+  animation: agitando 1s linear infinite alternate;
+  border-radius: 100%;
+}
 .agitado img {}
 
-.alimentado {}
+@keyframes agitando {
+  from {
+    box-shadow: 0px 0px 0px 5px rgba(255, 197, 122, 0.801);
+    opacity: 1;
+  }
+
+  to {
+    box-shadow: 0px 0px 50px 5px rgba(255, 197, 122, 0.801);
+    opacity: .8;
+  }
+}
+
+.alimentado {
+  animation: alimentando 1s linear infinite alternate;
+  border-radius: 100%;
+}
 .alimentado img {}
 
-.perturbado {}
-.perturbado img {}
+@keyframes alimentando {
+  from {
+    transform: rotate3d(0, 0, 0, 0deg);
+    border: 1px solid greenyellow;
+  }
 
-.instinto-selvagem {}
-.instinto-selvagem img {}
+  to {
+    transform: rotate3d(.5, 1, 0, 360deg);
+    border: 2px solid greenyellow;
+  }
+}
 
-/*
- * Exercício 3: Criar uma imagem sprite com as imagens dos botões de controle
- * (icone-comecar.png e icone-parar.png). Sugestões:
- *   - Usar o nome: sprite-controles.png
- *   - Usar o paint.NET (ou Photoshop) para gerar a nova imagem (sprite)
- *
- */
 
-.comecar,
-.parar {}
+.perturbado { 
+  animation: shake 900ms cubic-bezier(.36,.07,.19,.97) both;
+}
+.perturbado img {
+}
 
-.comecar {}
+/* Usei como base 
+https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+*/
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
 
-.parar {}
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+.instinto-selvagem {
+  border-radius: 100%;
+  animation: milkshake 300ms cubic-bezier(.36,.07,.19,.97) infinite,
+              pulse-vermelho .5s linear infinite alternate;
+}
+
+.instinto-selvagem img {
+}
+
+/* Usei como base 
+https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+*/
+@keyframes milkshake {
+  10%, 90% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(4px, -6px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-10px, 6px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(10px, 4px, 0);
+  }
+}
+
+@keyframes pulse-vermelho {
+  from {
+    box-shadow: 0px 0px 0px 5px rgba(235, 113, 109, 0.1);
+  }
+
+  to {
+    box-shadow: 0px 0px 20px 60px rgba(241, 38, 38, .4);
+  }
+}

@@ -78,6 +78,10 @@ body {
   transform: translateX(0);
 }
 
+#controles li.item:hover {
+  background-color: #9adce0;
+}
+
 .item {
   height: 38px;
   font-family: 'Righteous', cursive;
